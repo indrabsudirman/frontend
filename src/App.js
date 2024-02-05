@@ -9,7 +9,7 @@ function App() {
   const { user } = useSelector((state) => ({ ...state }));
   console.log(user);
   return (
-    <div>
+    <div className="dark">
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
