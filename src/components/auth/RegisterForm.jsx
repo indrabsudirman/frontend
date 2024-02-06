@@ -33,6 +33,34 @@ export default function RegisterForm() {
             register={register}
             error={errors?.name?.message}
           />
+          <AuthInput
+            name="email"
+            type="text"
+            placeholder="Email"
+            register={register}
+            error={errors?.email?.message}
+          />
+          <AuthInput
+            name="phoneNumber"
+            type="text"
+            placeholder="Phone Number"
+            register={register}
+            error={errors?.phoneNumber?.message}
+          />
+          <AuthInput
+            name="password"
+            type="password"
+            placeholder="Password"
+            register={register}
+            error={errors?.password?.message}
+          />
+          <AuthInput
+            name="confirmPassword"
+            type="password"
+            placeholder="Confirm Password"
+            register={register}
+            error={errors?.confirmPassword?.message}
+          />
           <button type="submit">Submit</button>
         </form>
       </div>
