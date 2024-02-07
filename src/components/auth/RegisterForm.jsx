@@ -2,7 +2,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../../utils/validation.js";
 import AuthInput from "./AuthInput.jsx";
+import HashLoader from "react-spinners/HashLoader";
+import { useSelector } from "react-redux";
 export default function RegisterForm() {
+  const { status } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -61,7 +64,17 @@ export default function RegisterForm() {
             register={register}
             error={errors?.confirmPassword?.message}
           />
-          <button type="submit">Submit</button>
+          <button
+            className="w-full flex justify-center bg-green_1 text-gray-100 p-4 rounded-full tracking-wide font-semibold
+          focus:outline-none hover:bg-green_2 shadow-lg cursor-pointer transition ease-in duration-300"
+            type="submit"
+          >
+            {status !== "loading" ? (
+              <HashLoader color="#fff" size={30} />
+            ) : (
+              "Sign Up"
+            )}
+          </button>
         </form>
       </div>
     </div>
