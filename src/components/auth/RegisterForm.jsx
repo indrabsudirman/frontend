@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../../utils/validation.js";
 import AuthInput from "./AuthInput.jsx";
 import HashLoader from "react-spinners/HashLoader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../../features/userSlice";
 export default function RegisterForm() {
-  const { status } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { status, error } = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -15,7 +18,13 @@ export default function RegisterForm() {
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    console.log(data);
+    let res = await dispatch(registerUser({ ...data, picture: "" }));
+    if (res.payload.user) {
+      navigate("/");
+    }
+  };
   console.log("value watch", watch());
   console.log("errors", errors);
 
@@ -65,6 +74,12 @@ export default function RegisterForm() {
             register={register}
             error={errors?.confirmPassword?.message}
           />
+          {/* If we have an error */}
+          {error ? (
+            <div>
+              <p className="text-red-400">{error}</p>
+            </div>
+          ) : null}
           {/* Submit button */}
           <button
             className="w-full flex justify-center bg-green_1 text-gray-100 p-4 rounded-full tracking-wide font-semibold
