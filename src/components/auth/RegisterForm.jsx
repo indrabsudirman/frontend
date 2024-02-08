@@ -6,6 +6,8 @@ import AuthInput from "./AuthInput.jsx";
 import HashLoader from "react-spinners/HashLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../features/userSlice";
+import { toast } from "react-toastify";
+
 export default function RegisterForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +24,8 @@ export default function RegisterForm() {
     console.log(data);
     let res = await dispatch(registerUser({ ...data, picture: "" }));
     if (res.payload.user) {
-      navigate("/");
+      toast.success("Registration successful  🚀");
+      navigate("/login");
     }
   };
   console.log("value watch", watch());

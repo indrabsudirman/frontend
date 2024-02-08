@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import { ToastContainer, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const { user } = useSelector((state) => ({ ...state }));
   console.log(user);
@@ -17,6 +19,20 @@ function App() {
           <Route exact path="/register" element={<Register />} />
         </Routes>
       </Router>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Flip}
+        icon
+      />
     </div>
   );
 }
