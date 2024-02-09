@@ -31,3 +31,9 @@ export const signUpSchema = Yup.object({
       "Password and Confirm Password didn't match!"
     ),
 });
+export const signInSchema = Yup.object({
+  emailOrPhoneNumber: Yup.string().required(
+    "Email or Phone Number is required!"
+  ),
+  password: Yup.string().required("Password is required!"),
+});
