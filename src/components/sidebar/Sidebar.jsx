@@ -6,6 +6,7 @@ export default function Sidebar() {
       {/* 30% for set width the sidebar */}
       {/* sidebar header */}
       <SidebarHeader />
+      {/* notification */}
     </div>
   );
 }
