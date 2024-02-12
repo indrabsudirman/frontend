@@ -1,4 +1,6 @@
 import { SidebarHeader } from "./header";
+import { Notifications } from "./notifications";
+import { Search } from "./search";
 
 export default function Sidebar() {
   return (
@@ -7,6 +9,9 @@ export default function Sidebar() {
       {/* sidebar header */}
       <SidebarHeader />
       {/* notification */}
+      <Notifications />
+      {/* search */}
+      <Search />
     </div>
   );
 }
