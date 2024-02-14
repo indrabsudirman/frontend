@@ -13,10 +13,12 @@ export default function Sidebar() {
       <SidebarHeader />
       {/* notification */}
       <Notifications />
-      {/* search */}
-      <Search searchLength={searchResults.length} />
-      {/* conversations */}
-      <Conversations />
+      <div className="pl-3">
+        {/* search */}
+        <Search searchLength={searchResults.length} />
+        {/* conversations */}
+        <Conversations />
+      </div>
     </div>
   );
 }
