@@ -5,9 +5,9 @@ export const dateHandler = (date) => {
   moment.locale("id");
   moment.tz("Asia/Jakarta");
   let now = moment();
-  console.log(`Date from DB GMT 0 ${date}`);
+  // console.log(`Date from DB GMT 0 ${date}`);
   let momentDate = moment(date);
-  console.log(`Moment Date to Jakarta time ${momentDate}`);
+  // console.log(`Moment Date to Jakarta time ${momentDate}`);
   let time = momentDate.fromNow(true);
   let dateByHourAndMin = momentDate.format("HH:mm");
   const getDays = () => {

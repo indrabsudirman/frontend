@@ -10,8 +10,15 @@ import { useSelector } from "react-redux";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import { ToastContainer, Flip } from "react-toastify";
+import "animate.css/animate.min.css";
+import { ToastContainer, cssTransition } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const bounce = cssTransition({
+  enter: "animate__animated animate__bounceIn",
+  exit: "animate__animated animate__bounceOut",
+});
+
 function App() {
   const { user } = useSelector((state) => state.user);
   console.log(user);
@@ -49,7 +56,7 @@ function App() {
         draggable
         pauseOnHover
         theme="dark"
-        transition={Flip}
+        transition={bounce}
         icon
       />
     </div>

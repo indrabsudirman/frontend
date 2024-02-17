@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { SidebarHeader } from "./header";
 import Notifications from "./notifications/Notifications";
-import { Search } from "./search";
+import { Search, SearchResults } from "./search";
 import { Conversations } from "./conversations";
 
 export default function Sidebar() {
   const [searchResults, setSearchResults] = useState([]);
+  console.log(searchResults);
   return (
     <div className="w-[25%] h-full select-none">
       {/* 30% for set width the sidebar */}
@@ -15,10 +16,22 @@ export default function Sidebar() {
       <Notifications />
       <div className="pl-3">
         {/* search */}
-        <Search searchLength={searchResults.length} />
-        {/* conversations */}
-        <Conversations />
+        <Search
+          searchLength={searchResults.length}
+          setSearchResults={setSearchResults}
+        />
       </div>
+      {searchResults.length > 0 ? (
+        <>
+          {/* search results */}
+          <SearchResults searchResults={searchResults} />
+        </>
+      ) : (
+        <>
+          {/* conversations */}
+          <Conversations />
+        </>
+      )}
     </div>
   );
 }
