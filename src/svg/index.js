@@ -34,6 +34,7 @@ import SpeakerIcon from "./Speaker";
 import DialIcon from "./Dial";
 import VideoDialIcon from "./VideoDial";
 import ValidIcon from "./Valid";
+import ChatGPT from "./ChatGPT";
 export {
   CommunityIcon,
   StoryIcon,
@@ -71,4 +72,5 @@ export {
   DialIcon,
   VideoDialIcon,
   ValidIcon,
+  ChatGPT,
 };

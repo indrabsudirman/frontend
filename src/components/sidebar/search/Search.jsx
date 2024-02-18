@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FilterIcon, ReturnIcon, SearchIcon } from "../../../svg";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ export default function Search({ searchLength, setSearchResults }) {
   const { user } = useSelector((state) => state.user);
   const { token } = user;
   const [show, setShow] = useState(false);
+  const ref = useRef(null);
   const handleSearch = async (e) => {
     if (e.target.value.length > 3 && e.key === "Enter") {
       try {
@@ -33,6 +34,11 @@ export default function Search({ searchLength, setSearchResults }) {
       setSearchResults([]);
     }
   };
+  const reset = () => {
+    setSearchResults([]);
+    ref.current.value = "";
+    setShow(false);
+  };
   return (
     <div className="h-[49px] py-1">
       {/* container */}
@@ -43,7 +49,7 @@ export default function Search({ searchLength, setSearchResults }) {
             {show || searchLength > 0 ? (
               <span
                 className="w-8 flex items-center justify-center rotateAnimation cursor-pointer"
-                onClick={() => setSearchResults([])}
+                onClick={() => reset()}
               >
                 <ReturnIcon className="fill-green_1 w-5" />
               </span>
@@ -54,6 +60,7 @@ export default function Search({ searchLength, setSearchResults }) {
             )}
             <input
               type="text"
+              ref={ref}
               placeholder="Search or start a new chat"
               className="input"
               onFocus={() => setShow(true)}
