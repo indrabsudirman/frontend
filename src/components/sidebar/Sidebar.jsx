@@ -6,7 +6,7 @@ import { Conversations } from "./conversations";
 
 export default function Sidebar() {
   const [searchResults, setSearchResults] = useState([]);
-  console.log(searchResults);
+  // console.log(searchResults);
   return (
     <div className="w-[25%] h-full select-none">
       {/* 30% for set width the sidebar */}

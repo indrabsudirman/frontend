@@ -8,7 +8,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { activeConversation } = useSelector((state) => state.chat);
-  console.log(`active conversation ${activeConversation}`);
+  console.log("active conversation", activeConversation);
 
   //get conversations
   useEffect(() => {
