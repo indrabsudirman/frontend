@@ -26,7 +26,7 @@ export default function Search({ searchLength, setSearchResults }) {
         console.log(error);
         console.log(error.response.data.error.message);
         if (error.response && error.response.status === 404) {
-          console.clear();
+          // console.clear();
           toast.info(error.response.data.error.message);
         }
       }

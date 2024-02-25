@@ -43,7 +43,7 @@ export default function Conversation({ convo }) {
               <div className="flex-1 items-center gap-x-1 dark:text-dark_text_2">
                 <p className="text-sm">
                   {convo.latestMessage?.message.length > 35
-                    ? `${convo.latestMessage?.message.substring(0, 35)}...`
+                    ? `${convo.latestMessage?.message.substring(0, 30)}...`
                     : convo.latestMessage?.message}
                 </p>
               </div>
@@ -53,7 +53,9 @@ export default function Conversation({ convo }) {
         {/* right */}
         <div className="flex flex-col gap-y-4 items-end text-xs">
           <span className="dark:text-dark_text_2">
-            {dateHandler(convo.latestMessage.createdAt)}
+            {convo.latestMessage?.createdAt
+              ? dateHandler(convo.latestMessage?.createdAt)
+              : ""}
           </span>
           {/* <span>{moment(convo.latestMessage.createdAt).fromNow(true)}</span> */}
         </div>
