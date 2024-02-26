@@ -3,6 +3,7 @@ import ChatGPTHome from "./chatgpt/ChatGPTHome";
 import ChatContainer from "./chatwacontainer/ChatContainer";
 import ChatGPTContainer from "./chatgptcontainer/ChatGPTContainer";
 import ChatHeader from "./header/ChatHeader";
+import ChatMessages from "./messages/ChatMessages";
 
 export {
   WhatsappHome,
@@ -10,4 +11,5 @@ export {
   ChatContainer,
   ChatGPTContainer,
   ChatHeader,
+  ChatMessages,
 };
