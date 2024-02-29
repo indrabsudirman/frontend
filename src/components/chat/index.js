@@ -4,6 +4,7 @@ import ChatContainer from "./chatwacontainer/ChatContainer";
 import ChatGPTContainer from "./chatgptcontainer/ChatGPTContainer";
 import ChatHeader from "./header/ChatHeader";
 import ChatMessages from "./messages/ChatMessages";
+import ChatActions from "./actions/ChatActions";
 
 export {
   WhatsappHome,
@@ -12,4 +13,5 @@ export {
   ChatGPTContainer,
   ChatHeader,
   ChatMessages,
+  ChatActions
 };
