@@ -1,6 +1,7 @@
 import { SendIcon } from "../../../svg";
 import EmojiPicker from "./EmojiPicker";
 import Input from "./Input";
+import Attachments from "./Attachments";
 
 export default function ChatActions() {
   return (
@@ -19,7 +20,6 @@ export default function ChatActions() {
           <SendIcon className="dark:fill-dark_svg_1" />
         </button>
       </div>
-
     </form>
-  )
+  );
 }
