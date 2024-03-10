@@ -10,6 +10,7 @@ import { Attachments } from "./attachments";
 export default function ChatActions() {
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
   const [showAttachments, setShowAttachments] = useState(false);
   const { user } = useSelector((state) => state.user);
@@ -23,8 +24,10 @@ export default function ChatActions() {
     token,
   };
   const sendMessageHandler = async (e) => {
+    setLoading(true);
     e.preventDefault();
     await dispatch(sendMessage(values));
+    setLoading(false);
     setMessage("");
   };
 
@@ -56,7 +59,7 @@ export default function ChatActions() {
         {/*send button*/}
         <button type="submit" className="btn">
           {" "}
-          {status === "loading" ? (
+          {status === "loading" && loading ? (
             <ClipLoader color="#E9EDEF" size={25} />
           ) : (
             <SendIcon className="dark:fill-dark_svg_1" />
