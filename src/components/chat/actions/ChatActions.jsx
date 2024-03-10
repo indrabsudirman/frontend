@@ -1,8 +1,8 @@
 import { SendIcon } from "../../../svg";
-import EmojiPicker from "./EmojiPicker";
+import EmojiPickerApp from "./EmojiPicker";
 import Input from "./Input";
 import Attachments from "./Attachments";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../../features/chatSlice";
 import { ClipLoader } from "react-spinners";
@@ -13,6 +13,7 @@ export default function ChatActions() {
   const { user } = useSelector((state) => state.user);
   const { token } = user;
   const { activeConversation, status } = useSelector((state) => state.chat);
+  const textRef = useRef();
   const values = {
     message,
     convo_id: activeConversation._id,
@@ -34,11 +35,15 @@ export default function ChatActions() {
       <div className="w-full flex items-center gap-x-2">
         {/*emoji and attachment*/}
         <ul className="flex gap-x-2">
-          <EmojiPicker />
+          <EmojiPickerApp
+            message={message}
+            setMessage={setMessage}
+            textRef={textRef}
+          />
           <Attachments />
         </ul>
         {/*input*/}
-        <Input message={message} setMessage={setMessage} />
+        <Input message={message} setMessage={setMessage} textRef={textRef} />
         {/*send button*/}
         <button type="submit" className="btn">
           {" "}
