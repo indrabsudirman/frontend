@@ -25,7 +25,7 @@ export default function Home() {
     <div className="h-screen dark:bg-dark_bg_1 flex items-center justify-center overflow-hidden">
       {/* you can remove py-[19px] to remove padding top */}
       {/* container */}
-      <div className="container h-screen flex">
+      <div className="container h-screen flex ">
         {/* sidebar */}
         <Sidebar />
         {activeConversation._id ? <ChatContainer /> : <WhatsappHome />}

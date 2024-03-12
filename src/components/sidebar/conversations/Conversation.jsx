@@ -6,6 +6,7 @@ import { getConversationId } from "../../../utils/chat";
 export default function Conversation({ convo }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
+  const { activeConversation } = useSelector((state) => state.chat);
   const { token } = user;
   // console.log(convo);
   const values = {
@@ -18,7 +19,9 @@ export default function Conversation({ convo }) {
   return (
     <li
       onClick={() => openConversation()}
-      className="list-none h-[72px] w-full dark:bg-dark_bg_1 hover:dark:bg-dark_bg_2 cursor-pointer dark:text-dark_text_2 px-[10px]"
+      className={`list-none h-[72px] w-full dark:bg-dark_bg_1 hover:dark:bg-dark_bg_2 cursor-pointer dark:text-dark_text_2 px-[10px] ${
+        convo._id === activeConversation._id ? "dark:bg-dark_hover_1" : ""
+      }`}
     >
       {/* container */}
       <div className="relative w-full flex items-center justify-between py-[10px]">
