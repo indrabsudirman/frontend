@@ -19,7 +19,9 @@ export default function Conversation({ convo }) {
   return (
     <li
       onClick={() => openConversation()}
-      className={`list-none h-[72px] w-full dark:bg-dark_bg_1 hover:dark:bg-dark_bg_2 cursor-pointer dark:text-dark_text_2 px-[10px] ${
+      className={`list-none h-[72px] w-full dark:bg-dark_bg_1 hover:${
+        convo._id !== activeConversation._id ? "dark:bg-dark_bg_2" : ""
+      } cursor-pointer dark:text-dark_text_2 px-[10px] ${
         convo._id === activeConversation._id ? "dark:bg-dark_hover_1" : ""
       }`}
     >
