@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import { io } from "socket.io-client";
 //pages
 import Home from "./pages/home";
 import Login from "./pages/login";
@@ -14,12 +15,17 @@ import "animate.css/animate.min.css";
 import { ToastContainer, cssTransition } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+//socket io
 const bounce = cssTransition({
   enter: "animate__animated animate__bounceIn",
   exit: "animate__animated animate__bounceOut",
 });
 
+const socket = io(process.env.REACT_APP_API_ENDPOINT.split("/api/v1")[0]);
+
 function App() {
+  console.log(socket);
+  console.log(process.env.REACT_APP_API_ENDPOINT.split("/api/v1")[0]);
   const { user } = useSelector((state) => state.user);
   console.log(user);
   const { token } = user;
