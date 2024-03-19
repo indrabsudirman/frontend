@@ -14,6 +14,7 @@ import Register from "./pages/register";
 import "animate.css/animate.min.css";
 import { ToastContainer, cssTransition } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SocketContext from "./context/SocketContext";
 
 //socket io
 const bounce = cssTransition({
@@ -24,33 +25,37 @@ const bounce = cssTransition({
 const socket = io(process.env.REACT_APP_API_ENDPOINT.split("/api/v1")[0]);
 
 function App() {
-  console.log(socket);
   console.log(process.env.REACT_APP_API_ENDPOINT.split("/api/v1")[0]);
   const { user } = useSelector((state) => state.user);
   console.log(user);
   const { token } = user;
   console.log(token);
+
   return (
     <div className="dark">
-      <Router>
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={token ? <Home /> : <Navigate to="/login" />}
-          />
-          <Route
-            exact
-            path="/login"
-            element={!token ? <Login /> : <Navigate to="/" />}
-          />
-          <Route
-            exact
-            path="/register"
-            element={!token ? <Register /> : <Navigate to="/" />}
-          />
-        </Routes>
-      </Router>
+      <SocketContext.Provider value={socket}>
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                token ? <Home socket={socket} /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              exact
+              path="/login"
+              element={!token ? <Login /> : <Navigate to="/" />}
+            />
+            <Route
+              exact
+              path="/register"
+              element={!token ? <Register /> : <Navigate to="/" />}
+            />
+          </Routes>
+        </Router>
+      </SocketContext.Provider>
       <ToastContainer
         position="top-center"
         autoClose={5000}
