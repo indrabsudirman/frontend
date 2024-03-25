@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { dateHandler } from "../../../utils/date";
 import { openCreateConversation } from "../../../features/chatSlice";
 import { getConversationId } from "../../../utils/chat";
+import SocketContext from "../../../context/SocketContext";
 
-export default function Conversation({ convo }) {
+function Conversation({ convo, socket }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { activeConversation } = useSelector((state) => state.chat);
@@ -13,8 +14,10 @@ export default function Conversation({ convo }) {
     receiver_id: getConversationId(user, convo.users),
     token,
   };
-  const openConversation = () => {
-    dispatch(openCreateConversation(values));
+  const openConversation = async () => {
+    let newConvo = await dispatch(openCreateConversation(values));
+    console.log("newConvo", newConvo);
+    socket.emit("join conversation", newConvo.payload._id);
   };
   return (
     <li
@@ -70,3 +73,11 @@ export default function Conversation({ convo }) {
     </li>
   );
 }
+
+const ConversationWithContext = (props) => (
+  <SocketContext.Consumer>
+    {(socket) => <Conversation {...props} socket={socket} />}
+  </SocketContext.Consumer>
+);
+
+export default ConversationWithContext;

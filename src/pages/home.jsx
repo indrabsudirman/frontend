@@ -17,6 +17,11 @@ function Home({ socket }) {
   const { activeConversation } = useSelector((state) => state.chat);
   console.log("active conversation", activeConversation);
 
+  //join user into socket io
+  useEffect(() => {
+    socket.emit("join", user._id);
+  }, [socket, user]);
+
   //get conversations
   useEffect(() => {
     if (user) {
