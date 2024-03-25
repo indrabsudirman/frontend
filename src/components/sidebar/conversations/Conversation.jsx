@@ -1,8 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { dateHandler } from "../../../utils/date";
 import { openCreateConversation } from "../../../features/chatSlice";
-import { getConversationId } from "../../../utils/chat";
+import {
+  getConversationId,
+  getConversationName,
+  getConversationPicture,
+} from "../../../utils/chat";
 import SocketContext from "../../../context/SocketContext";
+import { capitalize } from "../../../utils/string";
 
 function Conversation({ convo, socket }) {
   const dispatch = useDispatch();
@@ -35,7 +40,7 @@ function Conversation({ convo, socket }) {
           {/* conversation user picture */}
           <div className="relative min-w-[40px] max-w-[40px] h-[40px] rounded-full overflow-hidden">
             <img
-              src={convo.picture}
+              src={getConversationPicture(user, convo.users)}
               alt={convo.name}
               className="w-full h-full object-cover"
             />
@@ -44,7 +49,7 @@ function Conversation({ convo, socket }) {
           <div className="w-full flex flex-col">
             {/* conversation name user */}
             <h1 className="font-bold flex items-center gap-x-2">
-              {convo.name}
+              {capitalize(getConversationName(user, convo.users))}
             </h1>
             {/* conversation message */}
             <div className="flex items-center gap-x-1 dark:text-dark_text_2">
