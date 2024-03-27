@@ -15,7 +15,7 @@ function Contact({ contact, setSearchResults, socket }) {
     let newConvo = await dispatch(openCreateConversation(values));
     console.log("newConvo", newConvo);
     socket.emit("join conversation", newConvo.payload._id);
-    setSearchResults([]);
+    // setSearchResults([]);
   };
   return (
     <li
